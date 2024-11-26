@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const chimeSound = document.getElementById('chime-sound');
 
     // Fetch and load products from goods.html
+document.addEventListener('DOMContentLoaded', function() 
+{
     fetch('goods.html')
         .then(response => response.text())
         .then(html => {
@@ -122,3 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error loading products:', error);
         });
 });
+
+
+
