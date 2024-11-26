@@ -40,6 +40,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const setupProducts = () => {
         const products = document.querySelectorAll('.product input[type="checkbox"]');
+        const minusButtons = document.querySelectorAll('.minus-btn');
+        const plusButtons = document.querySelectorAll('.plus-btn');
+        
+        minusButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const quantityInput = event.target.closest('.quantity-controls').querySelector('.quantity-input');
+                const currentValue = parseInt(quantityInput.value, 10);
+                if (currentValue > 1) {
+                    quantityInput.value = currentValue - 1;
+                }
+            });
+        });
+
+        plusButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const quantityInput = event.target.closest('.quantity-controls').querySelector('.quantity-input');
+                const currentValue = parseInt(quantityInput.value, 10);
+                quantityInput.value = currentValue + 1;
+            });
+        });
+
         copyQuoteButton.addEventListener('click', () => {
             const selectedProducts = [];
             products.forEach((checkbox) => {
