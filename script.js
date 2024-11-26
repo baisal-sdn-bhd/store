@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalText = document.getElementById('modal-text');
     const chimeSound = document.getElementById('chime-sound');
 
+    // Check if chime sound is ready to play
+    chimeSound.addEventListener('canplaythrough', (event) => {
+        console.log('Chime sound is ready to play');
+    });
+
     const filterProducts = (searchTerm) => {
         const products = document.querySelectorAll('.product input[type="checkbox"]');
         products.forEach((product) => {
@@ -65,7 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.removeChild(tempTextArea);
 
             // Play chime sound
-            chimeSound.play();
+            chimeSound.play().catch((error) => {
+                console.error('Error playing the chime sound:', error);
+            });
 
             // Launch confetti
             confetti({
