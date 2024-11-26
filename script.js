@@ -7,19 +7,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const chimeSound = document.getElementById('chime-sound');
 
     // Fetch and load products from goods.html
-document.addEventListener('DOMContentLoaded', function() 
-{
     fetch('goods.html')
         .then(response => response.text())
         .then(html => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, 'text/html');
-            const products = doc.querySelectorAll('.product');
+            const productsFromHtml = doc.querySelectorAll('.product');
             const catalog = document.getElementById('catalog');
 
-            products.forEach(product => {
+            productsFromHtml.forEach(product => {
                 catalog.appendChild(product.cloneNode(true));
             });
+
+            const products = catalog.querySelectorAll('.product');  // Update product reference after appending
 
             // Quantity adjustment functionality
             const updateQuantity = (input, delta) => {
@@ -124,6 +124,3 @@ document.addEventListener('DOMContentLoaded', function()
             console.error('Error loading products:', error);
         });
 });
-
-
-
