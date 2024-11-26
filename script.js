@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const catalog = document.getElementById('catalog');
 
             products.forEach(product => {
-                catalog.appendChild(product);
+                catalog.appendChild(product.cloneNode(true));
             });
 
             // Quantity adjustment functionality
@@ -94,4 +94,31 @@ document.addEventListener('DOMContentLoaded', () => {
                     const searchTerm = event.target.value.toLowerCase();
                     products.forEach((product) => {
                         const productName = product.querySelector('h3').textContent.toLowerCase();
-                        if [_{{{CITATION{{{_1{](https://github.com/watchping/vue-course/tree/6a60dc019287a13859793f1ec7fef84dc41aa2b9/temp.md)
+                        if (productName.includes(searchTerm)) {
+                            product.style.display = 'block';
+                        } else {
+                            product.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Modal close functionality
+            const closeModal = () => {
+                modal.style.display = 'none';
+            };
+
+            if (closeButton) {
+                closeButton.addEventListener('click', closeModal);
+            }
+
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Error loading products:', error);
+        });
+});
